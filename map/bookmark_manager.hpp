@@ -380,8 +380,8 @@ public:
 
   bool HasRecentlyDeletedBookmark() const { return m_recentlyDeletedBookmark.operator bool(); };
   void ResetRecentlyDeletedBookmark();
-
-  bool HasRecentlyDeletedCategories() const;
+  
+  size_t GetRecentlyDeletedCategoriesCount() const;
   BookmarkManager::KMLDataCollectionPtr GetRecentlyDeletedCategories();
   bool IsRecentlyDeletedCategory(std::string const & filePath) const;
 

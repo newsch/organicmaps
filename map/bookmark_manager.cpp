@@ -404,11 +404,11 @@ void BookmarkManager::ResetRecentlyDeletedBookmark()
   m_recentlyDeletedBookmark.reset();
 }
 
-bool BookmarkManager::HasRecentlyDeletedCategories() const
+size_t BookmarkManager::GetRecentlyDeletedCategoriesCount() const
 {
   Platform::FilesList files;
   Platform::GetFilesByExt(GetTrashDirectory(), kKmlExtension, files);
-  return !files.empty();
+  return files.size();
 }
 
 BookmarkManager::KMLDataCollectionPtr BookmarkManager::GetRecentlyDeletedCategories()
