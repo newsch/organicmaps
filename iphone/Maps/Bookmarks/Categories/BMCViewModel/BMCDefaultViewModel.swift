@@ -37,9 +37,6 @@ final class BMCDefaultViewModel: NSObject {
     if !manager.areAllCategoriesEmpty() {
       actions.append(.exportAll)
     }
-    if manager.hasRecentlyDeletedCategories() {
-      actions.append(.recentlyDeleted)
-    }
   }
 
   private func setNotifications() {
@@ -55,6 +52,10 @@ final class BMCDefaultViewModel: NSObject {
 
       sections.append(.actions)
       setActions()
+
+      if manager.hasRecentlyDeletedCategories() {
+        sections.append(.recentlyDeleted)
+      }
     } else {
       sections.append(.notifications)
       setNotifications()
@@ -84,6 +85,7 @@ extension BMCDefaultViewModel {
     switch section {
     case .categories: return categories.count
     case .actions: return actions.count
+    case .recentlyDeleted: return 1
     case .notifications: return notifications.count
     }
   }
