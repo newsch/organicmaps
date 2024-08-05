@@ -1,8 +1,9 @@
 class MockRecentlyDeletedCategoriesManager: NSObject, RecentlyDeletedCategoriesManager, BookmarksObservable {
+  
   var categories = [RecentlyDeletedCategory]()
 
-  func hasRecentlyDeletedCategories() -> Bool {
-    !categories.isEmpty
+  func recentlyDeletedCategoriesCount() -> UInt64 {
+    UInt64(categories.count)
   }
 
   func getRecentlyDeletedCategories() -> [RecentlyDeletedCategory] {

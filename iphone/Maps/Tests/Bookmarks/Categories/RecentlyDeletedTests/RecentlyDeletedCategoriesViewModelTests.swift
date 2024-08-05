@@ -103,7 +103,7 @@ final class RecentlyDeletedCategoriesViewModelTests: XCTestCase {
   }
 
   func testCancelSearchRestoresDataSource() {
-    var searchText = "test"
+    let searchText = "test"
     viewModel.search(searchText)
     XCTAssertEqual(viewModel.state, .searching)
     XCTAssertTrue(viewModel.filteredDataSource.allSatisfy { $0.content.allSatisfy { $0.title.localizedCaseInsensitiveContains(searchText) } })
