@@ -28,7 +28,7 @@ typedef void (^SortBookmarksCompletionBlock)(NSArray<MWMBookmarksSection *> * _N
 typedef void (^SharingResultCompletionHandler)(MWMBookmarksShareStatus status, NSURL * _Nullable urlToALocalFile);
 
 @protocol RecentlyDeletedCategoriesManager <NSObject>
-- (BOOL)hasRecentlyDeletedCategories;
+- (uint64_t)recentlyDeletedCategoriesCount;
 - (NSArray<RecentlyDeletedCategory *> *)getRecentlyDeletedCategories;
 - (void)deleteRecentlyDeletedCategoryAtURLs:(NSArray<NSURL *> *)urls;
 - (void)recoverRecentlyDeletedCategoriesAtURLs:(NSArray<NSURL *> *)urls;

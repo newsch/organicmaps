@@ -789,8 +789,8 @@ static KmlFileType convertFileTypeToCore(MWMKmlFileType fileType) {
 }
 
 // MARK: - RecentlyDeletedCategoriesManager
-- (BOOL)hasRecentlyDeletedCategories {
-  return self.bm.HasRecentlyDeletedCategories();
+- (uint64_t)recentlyDeletedCategoriesCount {
+  return self.bm.GetRecentlyDeletedCategoriesCount();
 }
 
 - (NSArray<RecentlyDeletedCategory *> *)getRecentlyDeletedCategories {
