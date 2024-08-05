@@ -223,7 +223,7 @@ extension BMCViewController: UITableViewDataSource {
     case .actions:
       return dequeCell(BMCActionsCell.self).config(model: viewModel.action(at: indexPath.row))
     case .recentlyDeleted:
-      return dequeCell(BMCActionsCell.self).config(model: BMCAction.recentlyDeleted)
+      return dequeCell(BMCActionsCell.self).config(model: viewModel.recentlyDeletedCategories())
     case .notifications:
       return dequeCell(BMCNotificationsCell.self)
     }

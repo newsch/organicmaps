@@ -11,7 +11,7 @@ enum BMCAction: BMCModel {
   case create
   case exportAll
   case `import`
-  case recentlyDeleted
+  case recentlyDeleted(Int)
 }
 
 extension BMCAction {
@@ -23,8 +23,8 @@ extension BMCAction {
       return L("bookmarks_export")
     case .import:
       return L("bookmarks_import")
-    case .recentlyDeleted:
-      return L("bookmarks_recently_deleted")
+    case .recentlyDeleted(let count):
+      return L("bookmarks_recently_deleted") + " (\(count))"
     }
   }
 

@@ -27,39 +27,41 @@ final class BMCDefaultViewModel: NSObject {
     reloadData()
   }
 
-  private func setCategories() {
-    categories = manager.sortedUserCategories()
+  private func getCategories() -> [BookmarkGroup] {
+    manager.sortedUserCategories()
   }
 
-  private func setActions() {
-    actions = [.create]
+  private func getActions() -> [BMCAction] {
+    var actions: [BMCAction] = [.create]
     actions.append(.import)
     if !manager.areAllCategoriesEmpty() {
       actions.append(.exportAll)
     }
+    return actions
   }
 
-  private func setNotifications() {
-    notifications = [.load]
+  private func getNotifications() -> [BMCNotification] {
+    [.load]
   }
 
   func reloadData() {
-    sections = []
+    sections.removeAll()
 
     if manager.areBookmarksLoaded() {
       sections.append(.categories)
-      setCategories()
+      categories = getCategories()
 
       sections.append(.actions)
-      setActions()
+      actions = getActions()
 
-      if manager.hasRecentlyDeletedCategories() {
+      if !manager.getRecentlyDeletedCategories().isEmpty {
         sections.append(.recentlyDeleted)
       }
     } else {
       sections.append(.notifications)
-      setNotifications()
+      notifications = getNotifications()
     }
+
     view?.update(sections: [])
   }
 }
@@ -100,6 +102,10 @@ extension BMCDefaultViewModel {
 
   func action(at index: Int) -> BMCAction {
     actions[index]
+  }
+
+  func recentlyDeletedCategories() -> BMCAction {
+    .recentlyDeleted(Int(manager.recentlyDeletedCategoriesCount()))
   }
 
   func notification(at index: Int) -> BMCNotification {
